@@ -1,14 +1,15 @@
-package com.mygdx.game;
+package com.mygdx.game.game_scene;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Sprites;
 
 public class Skull {
-    final Vector2 pos;
-    final Sprites sprites;
+    Vector2 pos;
+    Sprites sprites;
 
-    public Skull(final Sprites sprites) {
+    public Skull(Sprites sprites) {
         this.sprites = sprites;
         this.pos = new Vector2();
     }
