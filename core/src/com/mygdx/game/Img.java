@@ -24,7 +24,7 @@ public class Img {
     }
 
     public void draw(SpriteBatch batch, Vector2 pos) {
-        sprite.setPosition(pos.x, pos.y);
+        sprite.setPosition((int)pos.x, (int)pos.y);
         sprite.draw(batch);
     }
 

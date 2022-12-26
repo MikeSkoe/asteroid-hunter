@@ -9,6 +9,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Img;
@@ -24,11 +25,15 @@ public class SpriteSystem extends EntitySystem {
     // Sprite properties
 	private SpriteBatch batch;
     private Map<SpriteName, Img> spritesMap;
+    private OrthographicCamera camera;
 
     public enum SpriteName { Skull }
     
     @Override
     public void addedToEngine(Engine engine) {
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, 800, 480);
+        camera.zoom = 0.5f;
         batch = new SpriteBatch();
         spritesMap = new HashMap<SpriteName, Img>();
         spritesMap.put(SpriteName.Skull, new Img("skullboy.png", 4, 8));
@@ -46,6 +51,8 @@ public class SpriteSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
 		ScreenUtils.clear(0, 0, 0, 1);
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		{
             for (Entity entity: entities) {
